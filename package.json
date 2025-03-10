@@ -1,0 +1,51 @@
+{
+    "name": "pool-unlocker",
+    "private": true,
+    "version": "1.0.0",
+    "description": "open-cpuchain-pool ( open-ethereum-pool ) unlocker / payer",
+    "license": "MIT",
+    "author": "CPUchain",
+    "scripts": {
+        "lint": "eslint src/**/*.ts --ignore-pattern src/contracts",
+        "build:typechain": "typechain --target ethers-v6 --out-dir src/contracts src/abi/*.json",
+        "build:types": "tsc --declaration --emitDeclarationOnly -p tsconfig.build.json",
+        "build:bundle": "webpack",
+        "build:pkg": "pkg -d --no-bytecode -c ./package.json ./lib/start.js",
+        "build": "yarn build:types && yarn build:bundle && yarn build:pkg",
+        "start": "node ./lib/start.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "target": "node22",
+    "pkg": {
+        "scripts": "./lib/start.js",
+        "assets": [
+            "lib"
+        ],
+        "targets": [
+            "node22-linux-x64",
+            "node22-win-x64"
+        ],
+        "outputPath": "."
+    },
+    "devDependencies": {
+        "@cpuchain/eslint": "^1.0.4",
+        "@cpuchain/logger": "^1.0.3",
+        "@typechain/ethers-v6": "^0.5.1",
+        "@types/node": "^22.13.5",
+        "@yao-pkg/pkg": "^6.3.2",
+        "ajv": "^8.17.1",
+        "esbuild-loader": "^4.3.0",
+        "ethers": "^6.13.5",
+        "parse-duration": "^1.1.2",
+        "redis": "^4.7.0",
+        "ts-node": "^10.9.2",
+        "tsc": "^2.0.4",
+        "typechain": "^8.3.2",
+        "typescript": "^5.7.3",
+        "webpack": "^5.98.0",
+        "webpack-cli": "^6.0.1"
+    },
+    "resolutions": {
+        "fast-glob": ">=3.3.3"
+    }
+}

@@ -1,0 +1,25 @@
+{
+	"coin": "cpu",
+
+	"redis": {
+		"endpoint": "127.0.0.1:6379"
+	},
+
+	"unlocker": {
+		"poolFee": 0,
+		"poolFeeAddress": "",
+		"depth": 32,
+		"immatureDepth": 16,
+		"window": 86400,
+		"blockWindow": 1000,
+		"interval": "10m",
+		"daemon": "http://127.0.0.1:8545",
+		"timeout": "10s"
+	},
+
+	"payouts": {
+		"address": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+		"threshold": 1,
+		"bgsave": false
+	}
+}
