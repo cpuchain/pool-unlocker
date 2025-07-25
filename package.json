@@ -1,0 +1,77 @@
+{
+    "name": "pool-unlocker",
+    "private": true,
+    "version": "1.0.0",
+    "description": "open-cpuchain-pool ( open-ethereum-pool ) unlocker / payer",
+    "license": "MIT",
+    "author": "CPUchain",
+    "type": "module",
+    "main": "./lib/index.cjs",
+    "module": "./lib/index.js",
+    "types": "./lib/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./lib/index.js",
+            "require": "./lib/index.cjs",
+            "default": "./lib/index.js"
+        }
+    },
+    "keywords": [
+        "cpuchain"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cpuchain/pool-unlocker.git"
+    },
+    "scripts": {
+        "lint": "eslint src/**/*.ts test/**/*.ts --ignore-pattern src/contracts",
+        "build:typechain": "typechain --node16-modules --target ethers-v6 --out-dir src/contracts src/abi/*.json",
+        "build:dist": "yarn build && pkg -d --no-native-build --no-signature --no-bytecode -c ./package.json ./lib/start.cjs",
+        "build": "tsc -p tsconfig.types.json --noEmit && rollup -c",
+        "start": "node ./lib/start.js",
+        "docs:dev": "vitepress dev docs",
+        "docs:build": "vitepress build docs",
+        "docs:preview": "vitepress preview docs",
+        "test": "vitest && istanbul-badges-readme --colors=\"red:50,yellow:60\""
+    },
+    "target": "node22",
+    "pkg": {
+        "scripts": "./lib/start.cjs",
+        "assets": [
+            "lib"
+        ],
+        "targets": [
+            "node22-linux-x64",
+            "node22-macos-x64",
+            "node22-win-x64"
+        ],
+        "outputPath": "."
+    },
+    "devDependencies": {
+        "@cpuchain/eslint": "^1.0.9",
+        "@cpuchain/rollup": "^1.0.4",
+        "@typechain/ethers-v6": "npm:@cpuchain/typechain-ethers-v6@^0.5.1",
+        "@types/node": "^22.16.0",
+        "@vitest/coverage-v8": "^3.2.4",
+        "@yao-pkg/pkg": "^6.6.0",
+        "ajv": "^8.17.1",
+        "cross-env": "^7.0.3",
+        "dotenv": "^17.2.0",
+        "ethers": "^6.15.0",
+        "glob": "^11.0.3",
+        "istanbul-badges-readme": "^1.9.0",
+        "logger-chain": "^1.0.3",
+        "parse-duration": "^2.1.4",
+        "redis": "^5.6.1",
+        "ts-node": "^10.9.2",
+        "tsc": "^2.0.4",
+        "tsx": "^4.20.3",
+        "typechain": "npm:@cpuchain/typechain@^8.3.3",
+        "typescript": "^5.8.3",
+        "vitepress": "^1.6.3",
+        "vitest": "^3.2.4"
+    },
+    "resolutions": {
+        "fast-glob": ">=3.3.3"
+    }
+}

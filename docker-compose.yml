@@ -1,0 +1,9 @@
+services:
+  pool-unlocker:
+    container_name: pool-unlocker
+    image: ghcr.io/cpuchain/pool-unlocker:v1.0.0
+    restart: always
+    environment:
+      - CONFIG_FILE=/config.json
+    volumes:
+      - './config.json:/config.json:ro'
